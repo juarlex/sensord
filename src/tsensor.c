@@ -84,8 +84,8 @@ static void temp_per_tsensor(struct tsensor *sensor) {
 
 static void temp_as_string(char *t, char *buff) {
   char *s = strrchr(buff, '=') + 1;
-  size_t l = sizeof(s) <= sizeof(t) ? sizeof(s) : sizeof(t);
-  strncpy(t, s, l);
+  memset(t, 0x00, 1024);
+  memcpy(t, s, strlen(s));
 }
 
 static float string_as_temp(char *s) {
